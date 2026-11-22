@@ -26,7 +26,7 @@ name: DevSecOps Security Pipeline
         name: Dependency Scan (Trivy SCA)
         runs-on: ubuntu-latest
         steps:
-          - name: Checkout Code
+          - name: Checkout Codeclea
             uses: actions/checkout@v4
 
           - name: Run Trivy Vulnerability Scanner
