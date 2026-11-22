@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
   secret-scan:
@@ -20,7 +21,7 @@ jobs:
           fetch-depth: 0 # Full history needed to catch secrets in commits
 
       - name: Run Gitleaks
-        uses: gitleaks/gitleaks-action@v2
+        uses: gitleaks/gitleaks-action@v3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         # Pipeline will FAIL if any hardcoded secret is detected
@@ -33,7 +34,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Trivy Vulnerability Scanner
-        uses: aquasecurity/trivy-action@master
+        uses: aquasecurity/trivy-action@v0.28.0
         with:
           scan-type: 'fs'
           scan-ref: '.'
